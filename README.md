@@ -3,7 +3,6 @@ Este projeto foi criado utilizando Maven e Kotlin.
 [Relatório SonarCloud](https://sonarcloud.io/project/roles?id=joncec_A3_)
 [Vídeo A3](https://youtu.be/YXdXEDnFuSk)
 
-[Vídeo A3]()
 # Content:
  Pipeline com GitHub Actions
 
