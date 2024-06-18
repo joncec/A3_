@@ -2,9 +2,9 @@ name: CI/CD_Pipeline
 
 on:
   push:
-    branches: [ main, release, development, develop2 ] # Branches that trigger the pipeline when a push occurs
+    branches: [ main, release, development] # Branches that trigger the pipeline when a push occurs
   pull_request:
-    branches: [ main, release, development, develop2 ] # Branches that trigger the pipeline when a pull request occurs
+    branches: [ main, release, development] # Branches that trigger the pipeline when a pull request occurs
 
 jobs:
   preflight:
