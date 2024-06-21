@@ -38,11 +38,11 @@ jobs:
 
       - name: Run Maven
         run: mvn test
-        working-directory: ./A3
+        working-directory: ./A3_
 
       - name: Run Maven
         run: mvn test jacoco:report
-        working-directory: ./A3
+        working-directory: ./A3_
 
   test:
     needs: build
