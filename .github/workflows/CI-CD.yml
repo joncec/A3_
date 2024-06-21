@@ -12,15 +12,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          echo "Validating commit messages..."
-           REGEX="^((Merge.)|(Revert.)|((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.\))?!?: .))"
-          COMMIT_MSG=$(git log --format=%B -n 1 HEAD)
-          echo "$COMMIT_MSG" | while read -r COMMIT_MSG; do
-            if ! echo "$COMMIT_MSG" | grep -Eq "$REGEX"; then
-              echo "Commit message does not follow the convention: $COMMIT_MSG"
-              exit 1
+          echo "Validando mensagens de commit..."
+          
+            REGEX="^((Merge.)|(Revert.)|((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.\))?!?: .))"
+          
+            BASE_TAG=your-base-tag
+            if git rev-parse $BASE_TAG >/dev/null 2>&1; then
+                COMMIT_RANGE=$BASE_TAG..HEAD
+            else
+                COMMIT_RANGE=$(git rev-list --max-parents=0 HEAD)
             fi
-          done
+          
+            for COMMIT_HASH in $(git rev-list --no-merges $COMMIT_RANGE); do
+                MESSAGE=$(git log --format=%B -n 1 $COMMIT_HASH)
+                echo "Commit Message: ${MESSAGE}"
+                if ! [[ "$MESSAGE" =~ $REGEX ]]; then
+                    echo >&2 "ERROR: Commit aborted for not following the Conventional Commit standard."
+                    exit 1
+                else
+                    echo "Valid commit message."
+                fi
+           done
 
   build:
     runs-on: ubuntu-latest
