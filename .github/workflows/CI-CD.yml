@@ -84,9 +84,10 @@ jobs:
     if: github.ref == 'refs/heads/release' # This job is run if the GitHub reference is 'refs/heads/release'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - name: Configuração do Git
         run: |
-          git init
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
       - name: Release
