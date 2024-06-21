@@ -2,6 +2,7 @@ name: CI/CD_Pipeline
 
 on:
   push:
+
     branches: [ main, release, development] # Branches that trigger the pipeline when a push occurs
   pull_request:
     branches: [ main, release, development] # Branches that trigger the pipeline when a pull request occurs
@@ -12,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
+
           echo "Validando mensagens de commit..."
           
             REGEX="^((Merge.)|(Revert.)|((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.\))?!?: .))"
@@ -54,9 +56,11 @@ jobs:
       - name: Run Maven
         run: mvn test jacoco:report
 
+
   test:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
