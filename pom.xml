@@ -53,8 +53,6 @@
                 <configuration>
                     <!-- JaCoCo Report Path -->
                     <outputDirectory>${project.basedir}/report</outputDirectory>
-                    <!-- Output type -->
-                    <output>html</output>
                 </configuration>
                 <executions>
                     <execution>
