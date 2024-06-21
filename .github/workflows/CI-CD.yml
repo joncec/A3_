@@ -91,7 +91,7 @@ jobs:
           git config --global user.name "GitHub Actions"
       - name: Release
         run: |
-          GENERATE_VERSION=true
+          GENERATE_VERSION=$1
           echo "Generate version: $GENERATE_VERSION"
 
           PREVENT_REMOVE_FILE=$2
